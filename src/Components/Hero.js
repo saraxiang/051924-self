@@ -18,17 +18,26 @@ function Hero() {
   };
 
   useEffect(() => {
+    let timeoutId = null;
     const onPageScroll = () => {
-      if (window.scrollY > 600) {
-        setGoUp(true);
-      } else {
-        setGoUp(false);
+      if (timeoutId) {
+        clearTimeout(timeoutId);
       }
+      timeoutId = setTimeout(() => {
+        if (window.scrollY > 600) {
+          setGoUp(true);
+        } else {
+          setGoUp(false);
+        }
+      }, 100);
     };
     window.addEventListener("scroll", onPageScroll);
 
     return () => {
       window.removeEventListener("scroll", onPageScroll);
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
     };
   }, []);
 
