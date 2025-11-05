@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 function AppointmentForm() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+  }, []);
 
   const [patientName, setPatientName] = useState("");
   const [patientNumber, setPatientNumber] = useState("");
